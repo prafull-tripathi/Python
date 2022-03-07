@@ -1,0 +1,8 @@
++--------+-------------+------+-----+---------+----------------+
+| Field  | Type        | Null | Key | Default | Extra  |
++--------+-------------+------+-----+---------+----------------+
+| cid    | int         | NO   | PRI | NULL    | auto_increment |
+| name   | varchar(45) | YES  |     | NULL    |                |
+| email  | varchar(45) | YES  | UNI | NULL    |                |
+| mobile | varchar(10) | YES  | UNI | NULL    |                |
++--------+-------------+------+-----+---------+----------------+
