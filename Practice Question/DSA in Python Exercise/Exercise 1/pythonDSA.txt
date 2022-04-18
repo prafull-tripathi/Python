@@ -1,0 +1,329 @@
+#Assignment 1
+#1.1
+'''
+Write a short Python function, is multiple(n, m), that takes two integer
+values and returns True if n is a multiple of m, that is, n = mi for some
+integer i, and False otherwise.
+'''
+
+def multiple(n,m):
+    if m==0:
+        return False
+    return (n%m==0)
+
+n=int(input("Number 1?"))
+m=int(input("Number 2?"))
+
+print(multiple(n,m))
+
+
+#1.2
+'''
+Write a short Python function, is even(k), that takes an integer value and
+returns True if k is even, and False otherwise. However, your function
+cannot use the multiplication, modulo, or division operators
+'''
+
+def is_even(k):
+    return True if k[-1] == 0 or 2 or 4 or 6 or 8 else False
+
+k = input('Please enter k: ')
+result = is_even(list(k))
+print('true!') if result is True else print('false!')
+
+#1.3
+'''
+Write a short Python function, minmax(data), that takes a sequence of
+one or more numbers, and returns the smallest and largest numbers, in the
+form of a tuple of length two. Do not use the built-in functions min or
+max in implementing your solution
+'''
+
+def minmax(data):
+    data.sort()
+    return data[0],data[-1]
+
+lt=[1,7,5,9,3]
+print(minmax(lt))
+
+
+'''
+#1.4
+Write a short Python function, minmax(data), that takes a sequence of
+one or more numbers, and returns the smallest and largest numbers, in the
+form of a tuple of length two. Do not use the built-in functions min or
+max in implementing your solution
+'''
+
+
+def sum(n):
+    return False if n == 0 else (n * (n + 1) * (2 * n + 1)) / 6
+
+
+n = int( input( "Number? " ) )
+print( sum( n - 1 ) )
+
+'''
+#1.6
+Write a short Python function that takes a positive integer n and returns
+the sum of the squares of all the odd positive integers smaller than n
+'''
+
+
+def sum(n):
+    sum=0
+    for i in range(1,n):
+        if i%2!=0:
+            sum+=i**2
+    return sum;
+
+
+n = int( input( "Number? " ) )
+print( sum( n  ) )
+'''
+
+1.7 Give a single command that computes the sum from Exercise R-1.6, relying on Python’s comprehension syntax and the built-in sum function
+'''
+
+
+def sum(n):
+    return sum( i ** 2 for i in range( 1, n, 2 ) )
+
+
+n = int( input( "Number? " ) )
+print( sum( n  ) )
+
+1.8 Python allows negative integers to be used as indices into a sequence,
+such as a string. If string s has length n, and expression s[k] is used for index −n ≤ k < 0, what is the equivalent index j ≥ 0 such that s[j] references
+the same element
+'''
+s='Prafull'
+for k in range(-1,-len(s)-1,-1):
+    j=k+len(s)
+    print((s[k],s[j]))
+
+
+'''
+
+1.13 Write a pseudo-code description of a function that reverses a list of n
+integers, so that the numbers are listed in the opposite order than they
+were before, and compare this method to an equivalent Python function
+for doing the same thing
+
+'''
+
+def reverseArray(a):
+    i = 0
+    l = len( a )
+    while i < l // 2:
+        a[i], a[l - 1 - i] = a[l - 1 - i], a[i]
+        i += 1
+    return data
+
+data = [1,2,3,4,5]
+print(reverseArray(data))
+
+
+
+'''
+
+1.15 Write a Python function that takes a sequence of numbers and determines
+if all the numbers are different from each other (that is, they are distinct).
+
+'''
+
+def unique(array):
+    number_set=set()
+    for number in array:
+        if number in number_set:
+            return False
+        else:
+            number_set.add(number)
+    return True
+
+data = [1,2,3,4,5]
+print(unique(data))
+
+data = [1,2,3,4,5,1]
+print(unique(data))
+
+'''
+
+-1.17 Had we implemented the scale function (page 25) as follows, does it work
+properly?
+def scale(data, factor):
+for val in data:
+val = factor
+Explain why or why not?
+
+'''
+
+def realscale(data, factor):
+    for i in range (len(data)):
+        data[i]*=factor
+
+
+data = [1,2,3,4,5]
+print (data)
+realscale(data, 5)
+print (data)
+
+
+'''
+val *= factor creates a new instance of val, but doesn't change the reference to the original object in the list
+data[i] changes the reference to element i, which changes the original array"
+'''
+
+'''
+
+-1.17 Had we implemented the scale function (page 25) as follows, does it work
+properly?
+def scale(data, factor):
+for val in data:
+val = factor
+Explain why or why not?
+
+'''
+
+
+def redefine(n):
+    sum=0
+    lt=[]
+    for i in range (0,n,2):
+        sum+=i
+        lt.append(sum)
+
+    return lt
+
+
+n=int(input("NUmber Range?"))
+print(redefine(n))
+
+
+"""
+
+1.22 Write a short Python program that takes two arrays a and b of length n
+storing int values, and returns the dot product of a and b. That is, it returns
+an array c of length n such that c[i] = a[i] · b[i], for i = 0,...,n−1.
+
+"""
+
+
+def redefine(n):
+    sum=0
+    lt=[]
+    for i in range (0,n,2):
+        sum+=i
+        lt.append(sum)
+
+    return lt
+
+def dot_zip(a,b):
+    c = []
+    for a,b in zip(a,b):
+        c.append(a*b)
+    return c
+
+
+a, b = [1,2,3,4,5,6], [2,3,4,5,6,7]
+print(dot_zip(a,b))
+
+
+"""
+
+1.23 Give an example of a Python code fragment that attempts to write an element to a list based on an index that may be out of bounds. If that index
+is out of bounds, the program should catch the exception that results, and
+print the following error message:
+"Don’t try buffer overflow attacks in Python!"
+
+"""
+
+
+def array_index_handler(array, index, value = 100):
+    try:
+        array[index] = value
+    except IndexError as e:
+        print ("Don't try buffer overflow attacks in Python!")
+
+
+array = [1,2,3,4,5]
+array_index_handler(array, 10, 7)
+array_index_handler(array, 2, 7)
+
+print (array)
+
+"""
+1.24 Write a short Python function that counts the number of vowels in a given
+character string.
+"""
+
+
+def countVowels(str):
+    str=str.lower()
+    strV="aeiou"
+    count=0
+    for i in str:
+        if i in strV:
+            count+=1
+    return count
+
+
+print(countVowels('AabcdefghijklmnopqrstuvwxyzO'))
+
+"""
+
+1.24 Write a short Python function that counts the number of vowels in a given
+character string.
+"""
+
+
+def arithmetic_check(a, b, c):
+    if a + b == c:
+        return 'Can be used for addition'
+    elif a - b == c:
+        return 'Can be used for subtraction'
+    elif a * b == c:
+        return 'Suitable for multiplication'  # Note, this approach will miss division for 1, x, x combos
+    elif a / b == c:
+        return 'Suitable for division'
+    else:
+        return 'Not good for any of the big four'
+
+
+print( arithmetic_check( 1, 2, 3 ) )
+print( arithmetic_check( 1, 3, 3 ) )
+print( arithmetic_check( 1, 4, 3 ) )
+print( arithmetic_check( 3, 1, 3 ) )
+print( arithmetic_check( 4, 1, 3 ) )
+
+"""
+
+1.24 Write a short Python function that counts the number of vowels in a given
+character string.
+"""
+
+import math
+
+
+# Apporach 1: Using the log function
+def find_log2(number):
+    assert number > 2, 'The number should be greater than 2'
+    return int( math.log( number, 2 ) // 1 )
+
+
+# Approach 2: A while loop
+def find_num_divide_2(number):
+    divides = 0
+    while number >= 2:
+        divides += 1
+        number /= 2
+    return (divides)
+
+
+print( 'Approach 1' )
+for x in range( 5,50 ):
+    print( find_log2( x ), end=', ' )
+
+print( '\n\nApproach 2' )
+for x in range( 5,50 ):
+    print( find_num_divide_2( x ), end=', ' )
