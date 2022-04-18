@@ -1,0 +1,94 @@
+'''
+Write a Python program that outputs all possible strings formed by using the characters c , a , t , d , o , and g exactly once.
+'''
+
+def recursion_indices(array, first_idx, second_idx):
+    if first_idx == len( array ):
+        print( ''.join( list( map( str, array ) ) ), end=', ' )
+        return
+
+    else:
+        for i in range( first_idx, len( array ) ):
+            array[first_idx], array[i] = array[i], array[first_idx]
+            recursion_indices( array, first_idx + 1, second_idx )
+            array[first_idx], array[i] = array[i], array[first_idx]
+
+
+def all_combos_v2(array):
+    array = list( array )
+    first_idx = 0
+    second_idx = len( array )
+    recursion_indices( array, first_idx, second_idx )
+    return
+
+all_combos_v2('catdog')
+
+
+'''
+1.30 Write a Python program that can take a positive integer greater than 2 as
+input and write out the number of times one must repeatedly divide this
+number by 2 before getting a value less than 2.
+'''
+
+import math
+# Approach 2
+def find_num_divide_2(number):
+    divides = 0
+    while number>=2:
+        divides += 1
+        number /= 2
+    return (divides)
+
+# Approach 1
+def find_log2(number):
+    assert number>2, 'The number should be greater than 2'
+    return int(math.log(number, 2)//1)
+
+print("approach 1")
+num=int(input("Number??"))
+print(find_log2(num))
+
+
+print ('\nApproach 2')
+print (find_num_divide_2(num))
+
+
+'''
+1.36 Write a Python program that inputs a list of words, separated by whitespace, and outputs how many times each word appears in the list. You
+need not worry about efficiency at this point, however, as this topic is
+something that will be addressed later in this book.
+'''
+
+
+def clean_up_text(text):
+    text = text.lower()
+
+    unwanted_chars = {'\n', '.', '!', "'", '?', ','}
+    for char in unwanted_chars:
+        text = text.replace( char, ' ' )
+    return text
+
+
+def open_txt_file(filepath):
+    fp = open( filepath )
+    text = fp.read()
+    return (text)
+
+
+def word_count(text):
+    text = clean_up_text( text )
+    word_array = text.split( ' ' )
+    word_counts = {}  # This creates a dict, not a set
+    for word in word_array:
+        if word in word_counts:
+            word_counts[word] += 1
+        else:
+            word_counts[word] = 1
+
+    # Clean up extra whitespace
+    if '' in word_counts: del word_counts['']
+
+    return word_counts
+
+
+print(word_count( open_txt_file('dataread.txt' ) ))
